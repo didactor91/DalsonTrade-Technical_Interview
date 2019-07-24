@@ -21,16 +21,10 @@ const logic = {
         validate.arguments([
             { name: 'username', value: username, type: String, notEmpty: true },
             { name: 'password', value: password, type: String, notEmpty: true },
-            { name: 'isAdmin', value: isAdmin, type: String, notEmpty: true }
+            { name: 'isAdmin', value: isAdmin, type: Boolean, notEmpty: true }
         ])
 
         return (async () => {
-
-            const item = await Item.find({username})
-
-            if (item) {
-                throw new LogicError(`item with username ${username} already exists`)
-            }
 
             await Item.create({ username, password, isAdmin })
 

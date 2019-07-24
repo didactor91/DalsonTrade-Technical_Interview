@@ -18,8 +18,8 @@ router.get('/string/reverse/:string', (req, res) => {
 })
 
 router.post('/item', jsonParser, (req, res) => {
+    const { body: { username, password, isAdmin } } = req
     handleErrors(async () => {
-        const { body: { username, password, isAdmin } } = req
 
         await logic.addItem(username, password, isAdmin )
         res.status(201).json({ message: 'Ok, item added.' })

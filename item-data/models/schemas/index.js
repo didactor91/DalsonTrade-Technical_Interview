@@ -7,4 +7,4 @@ const item = new Schema({
 })
 
 
-module.exports = { item }
+module.exports =  item

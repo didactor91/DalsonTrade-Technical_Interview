@@ -1,12 +1,12 @@
 require('dotenv').config()
 
 const express = require('express')
-const package = require('./package.json.js')
+const package = require('./package.json')
 const routes = require('./routes')
 const cors = require('cors')
 const { mongoose } = require('item-data')
 
-const { env: { PORT, MONGODB_URL: URL }, argv: [, , port = PORT || 8080], } = process;
+const { env: { PORT, MONGODB_URI: URL }, argv: [, , port = PORT || 8080], } = process;
 
 (async () => {
     try {
@@ -20,7 +20,7 @@ const { env: { PORT, MONGODB_URL: URL }, argv: [, , port = PORT || 8080], } = pr
         const app = express()
 
         app.use(cors())
-        app.use('/api', routes)
+        app.use(routes)
 
         app.use(function (req, res, next) {
             res.status(404).json({ error: 'Not found.' })
